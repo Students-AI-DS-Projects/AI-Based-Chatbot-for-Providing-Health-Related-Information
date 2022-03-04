@@ -1,0 +1,106 @@
+import nltk
+import re
+import pandas as pd
+from nltk.corpus import stopwords
+
+
+#reading the data
+
+
+data = pd.read_csv("df_diseases.csv")
+data.head()
+
+
+#cleaning data
+
+import re
+def clean_text(text):
+    text = re.sub('((www\.[^\s]+)|(https?://[^\s]+))', "", text)
+    text = re.sub('[!"#$%&\'()*+,-./:;<=>?@[\]^_`{|}~]', "", text)
+    text = re.sub("\d+", "", text)
+    return text
+    
+    #stopwords
+    
+   from nltk.corpus import stopwords
+stop_word = set(stopwords.words('english'))
+ 
+                                                     # Print complete list of stop words dictionary of NLTK
+stop_word
+
+GREETING_INPUTS = ("hello", "hi", "greetings", "hello i need help", "good day","hey","i need help", "greetings")
+GREETING_RESPONSES = ["Good day, How may i of help?", "Hello, How can i help?", "hello", "I am glad! You are talking to me."]
+           
+def greeting(sentence):
+    for word in sentence.split():
+        if word.lower() in GREETING_INPUTS:
+            return random.choice(GREETING_RESPONSES)
+            
+            #lemmatization 
+           
+            lemmer = nltk.WordNetLemmatizer()
+def LemTokens(tokens):
+    return [lemmer.lemmatize(token) for token in tokens]
+    
+    
+    #punction
+    def RemovePunction(tokens):
+    return[t for t in tokens if t not in string.punctuation]
+
+
+#missing values 
+
+df.to_csv("df_diseases.csv")
+dataFrame = pd.read_csv("df_diseases.csv")
+dataFrame.dropna()
+
+
+
+                                                                                           # reading csv file
+dataFrame = pd.read_csv("df_diseases.csv")
+print("DataFrame with some NaN (missing) values...\n",dataFrame)
+
+                                                                                            # count the rows and columns in a DataFrame
+print("\nNumber of rows and column in our DataFrame = ",dataFrame.shape)
+
+                                                                                             # drop the missing values
+print("\nDataFrame after removing NaN values...\n",dataFrame.dropna())
+
+#tokenization
+import nltk
+from nltk.tokenize import sent_tokenize
+df = pd.read_csv('df_diseases.csv')
+# Assign first_dialogue to the first row's "Dialogue" column
+first_dialogue = df.loc[100, "name"]
+print(first_dialogue)
+sent_tokenize(first_dialogue)
+re.split(r"(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?|!)\s", first_dialogue)
+
+nlp = spacy.load("en_core_web_sm")
+[sent.text for sent in nlp(first_dialogue).sents]
+df = df.explode("name", ignore_index=True)
+df.rename(columns={"name: 0": "0"}, inplace=True)
+df.index.name = "0"
+df.head()
+
+
+#training data
+from sklearn.model_selection import train_test_split
+ from sklearn.datasets import load_iris
+
+train_df = pd.read_csv("df_diseases.csv")
+print(train_df.head())
+print(train_df.shape)
+print(train_df.info())
+print(train_df.describe())
+
+link=data.symptoms
+ name=data.drop('symptoms',axis=1)
+
+ 
+name_train,name_test,link_train,link_test=train_test_split(name,link,test_size=0.2)
+ name_train.head()
+ name_train.shape
+  name_test.head()
+  name_test.shape
+  
